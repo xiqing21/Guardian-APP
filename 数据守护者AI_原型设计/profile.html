@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人中心</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .status-bar {
+      background: linear-gradient(90deg, #000 0%, #333 100%);
+    }
+    .gradient-bg {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    }
+    .profile-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    .achievement-badge {
+      transition: all 0.3s ease;
+    }
+    .achievement-badge:hover {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    .honor-shine {
+      animation: shine 3s infinite;
+    }
+    @keyframes shine {
+      0% { transform: translateX(-100%); }
+      50%, 100% { transform: translateX(100%); }
+    }
+    .setting-item {
+      transition: all 0.2s ease;
+    }
+    .setting-item:hover {
+      background: #f3f4f6;
+      transform: translateX(4px);
+    }
+    .level-progress {
+      background: linear-gradient(90deg, #10b981, #34d399);
+      border-radius: 10px;
+      transition: width 0.8s ease;
+    }
+    .role-switch {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+    }
+    .stats-grid {
+      background: linear-gradient(135deg, #eff6ff, #dbeafe);
+    }
+    .qr-code {
+      background: 
+        linear-gradient(45deg, #000 25%, transparent 25%),
+        linear-gradient(-45deg, #000 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #000 75%),
+        linear-gradient(-45deg, transparent 75%, #000 75%);
+      background-size: 8px 8px;
+      background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 h-screen flex flex-col">
+  <!-- iOS 状态栏 -->
+  <div class="status-bar h-12 text-white text-sm flex justify-between items-center px-6">
+    <div class="flex items-center space-x-1">
+      <span class="font-medium">9:41</span>
+    </div>
+    <div class="flex items-center space-x-1">
+      <i class="fas fa-signal text-xs"></i>
+      <i class="fas fa-wifi text-xs"></i>
+      <i class="fas fa-battery-full text-xs"></i>
+      <span class="text-xs">100%</span>
+    </div>
+  </div>
+
+  <!-- 导航栏 -->
+  <div class="gradient-bg h-16 flex items-center justify-between px-6 text-white">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+        <i class="fas fa-user text-lg"></i>
+      </div>
+      <h1 class="text-xl font-bold">个人中心</h1>
+    </div>
+    <div class="flex items-center space-x-4">
+      <i class="fas fa-qrcode text-lg"></i>
+      <i class="fas fa-cog text-lg"></i>
+    </div>
+  </div>
+
+  <!-- 主要内容区域 -->
+  <div class="flex-1 overflow-y-auto">
+    <!-- 用户信息卡片 -->
+    <div class="profile-card mx-6 mt-4 rounded-2xl p-6 text-white shadow-xl">
+      <div class="flex items-center space-x-4 mb-4">
+        <div class="relative">
+          <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+            <i class="fas fa-user text-3xl"></i>
+          </div>
+          <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
+            <i class="fas fa-check text-xs"></i>
+          </div>
+        </div>
+        <div class="flex-1">
+          <h2 class="text-2xl font-bold">王师傅</h2>
+          <p class="text-sm opacity-90">工号：GD2025001 | 科技园区域负责人</p>
+          <div class="flex items-center space-x-2 mt-2">
+            <i class="fas fa-crown text-yellow-300"></i>
+            <span class="text-sm font-semibold">资深守护者 Lv.8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 等级进度 -->
+      <div class="bg-white bg-opacity-20 rounded-xl p-3">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-sm">经验值</span>
+          <span class="text-sm">2350 / 3000</span>
+        </div>
+        <div class="w-full bg-white bg-opacity-30 rounded-full h-3">
+          <div class="level-progress h-3 rounded-full" style="width: 78%"></div>
+        </div>
+        <div class="text-xs opacity-80 mt-1">距离下一级还需 650 经验值</div>
+      </div>
+    </div>
+
+    <!-- 个人统计 -->
+    <div class="stats-grid mx-6 mt-4 rounded-2xl p-4 shadow-lg">
+      <h3 class="font-semibold text-gray-800 mb-3">本月数据统计</h3>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="text-center">
+          <div class="text-2xl font-bold text-blue-600">28</div>
+          <div class="text-xs text-gray-600">完成任务</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-bold text-green-600">98.5%</div>
+          <div class="text-xs text-gray-600">准确率</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-bold text-orange-600">15</div>
+          <div class="text-xs text-gray-600">获得徽章</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-bold text-purple-600">1st</div>
+          <div class="text-xs text-gray-600">团队排名</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 荣誉墙 -->
+    <div class="mx-6 mt-4">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="font-semibold text-gray-800">荣誉墙</h3>
+        <span class="text-sm text-blue-500">查看全部</span>
+      </div>
+      
+      <div class="bg-white rounded-2xl p-4 shadow-lg">
+        <div class="grid grid-cols-4 gap-3">
+          <div class="achievement-badge text-center">
+            <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-2 relative overflow-hidden">
+              <i class="fas fa-trophy text-white text-lg"></i>
+              <div class="honor-shine absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-30 transform -skew-x-12"></div>
+            </div>
+            <div class="text-xs font-medium text-gray-800">月度冠军</div>
+            <div class="text-xs text-gray-500">1月</div>
+          </div>
+
+          <div class="achievement-badge text-center">
+            <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-2">
+              <i class="fas fa-star text-white text-lg"></i>
+            </div>
+            <div class="text-xs font-medium text-gray-800">精准达人</div>
+            <div class="text-xs text-gray-500">99%+</div>
+          </div>
+
+          <div class="achievement-badge text-center">
+            <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-2">
+              <i class="fas fa-bolt text-white text-lg"></i>
+            </div>
+            <div class="text-xs font-medium text-gray-800">速度之王</div>
+            <div class="text-xs text-gray-500">效率王</div>
+          </div>
+
+          <div class="achievement-badge text-center">
+            <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-2">
+              <i class="fas fa-heart text-white text-lg"></i>
+            </div>
+            <div class="text-xs font-medium text-gray-800">服务标兵</div>
+            <div class="text-xs text-gray-500">客户好评</div>
+          </div>
+
+          <div class="achievement-badge text-center">
+            <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-2">
+              <i class="fas fa-fire text-white text-lg"></i>
+            </div>
+            <div class="text-xs font-medium text-gray-800">连胜达人</div>
+            <div class="text-xs text-gray-500">15连胜</div>
+          </div>
+
+          <div class="achievement-badge text-center">
+            <div class="w-12 h-12 bg-indigo-500 rounded-full flex items-center justify-center mx-auto mb-2">
+              <i class="fas fa-shield-alt text-white text-lg"></i>
+            </div>
+            <div class="text-xs font-medium text-gray-800">数据守护者</div>
+            <div class="text-xs text-gray-500">资深</div>
+          </div>
+
+          <div class="achievement-badge text-center opacity-50">
+            <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center mx-auto mb-2">
+              <i class="fas fa-lock text-gray-500 text-lg"></i>
+            </div>
+            <div class="text-xs font-medium text-gray-500">传奇大师</div>
+            <div class="text-xs text-gray-400">未解锁</div>
+          </div>
+
+          <div class="achievement-badge text-center opacity-50">
+            <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center mx-auto mb-2">
+              <i class="fas fa-lock text-gray-500 text-lg"></i>
+            </div>
+            <div class="text-xs font-medium text-gray-500">神话英雄</div>
+            <div class="text-xs text-gray-400">未解锁</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 角色切换 -->
+    <div class="mx-6 mt-4">
+      <h3 class="font-semibold text-gray-800 mb-3">角色切换</h3>
+      <div class="role-switch rounded-2xl p-4 text-white shadow-lg">
+        <div class="flex items-center justify-between">
+          <div>
+            <h4 class="font-semibold">管理员视图</h4>
+            <p class="text-sm opacity-90">切换到管理员界面体验管理功能</p>
+          </div>
+          <button class="bg-white bg-opacity-20 px-4 py-2 rounded-xl font-medium">
+            <i class="fas fa-exchange-alt mr-2"></i>切换
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 设置菜单 -->
+    <div class="mx-6 mt-4 mb-6">
+      <h3 class="font-semibold text-gray-800 mb-3">设置</h3>
+      <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+        <div class="setting-item p-4 border-b border-gray-100">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+              <i class="fas fa-bell text-blue-500"></i>
+              <span class="font-medium text-gray-800">消息通知</span>
+            </div>
+            <i class="fas fa-chevron-right text-gray-400"></i>
+          </div>
+        </div>
+
+        <div class="setting-item p-4 border-b border-gray-100">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+              <i class="fas fa-shield-alt text-green-500"></i>
+              <span class="font-medium text-gray-800">隐私安全</span>
+            </div>
+            <i class="fas fa-chevron-right text-gray-400"></i>
+          </div>
+        </div>
+
+        <div class="setting-item p-4 border-b border-gray-100">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+              <i class="fas fa-palette text-purple-500"></i>
+              <span class="font-medium text-gray-800">主题设置</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="text-sm text-gray-500">浅色</span>
+              <i class="fas fa-chevron-right text-gray-400"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="setting-item p-4 border-b border-gray-100">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+              <i class="fas fa-language text-orange-500"></i>
+              <span class="font-medium text-gray-800">语言设置</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="text-sm text-gray-500">中文</span>
+              <i class="fas fa-chevron-right text-gray-400"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="setting-item p-4 border-b border-gray-100">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+              <i class="fas fa-question-circle text-blue-500"></i>
+              <span class="font-medium text-gray-800">帮助与反馈</span>
+            </div>
+            <i class="fas fa-chevron-right text-gray-400"></i>
+          </div>
+        </div>
+
+        <div class="setting-item p-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+              <i class="fas fa-info-circle text-gray-500"></i>
+              <span class="font-medium text-gray-800">关于我们</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="text-sm text-gray-500">v1.4.0</span>
+              <i class="fas fa-chevron-right text-gray-400"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部 Tab Bar -->
+  <div class="h-20 bg-white border-t border-gray-200 flex justify-around items-center px-6">
+    <div class="flex flex-col items-center space-y-1">
+      <i class="fas fa-home text-xl text-gray-400"></i>
+      <span class="text-xs text-gray-400">首页</span>
+    </div>
+    <div class="flex flex-col items-center space-y-1">
+      <i class="fas fa-tasks text-xl text-gray-400"></i>
+      <span class="text-xs text-gray-400">任务</span>
+    </div>
+    <div class="flex flex-col items-center space-y-1">
+      <i class="fas fa-qrcode text-xl text-gray-400"></i>
+      <span class="text-xs text-gray-400">扫描</span>
+    </div>
+    <div class="flex flex-col items-center space-y-1">
+      <i class="fas fa-user text-2xl text-purple-500"></i>
+      <span class="text-xs text-purple-500 font-medium">我的</span>
+    </div>
+  </div>
+</body>
+</html> 

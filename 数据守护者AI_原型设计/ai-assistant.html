@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI智能助手</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .status-bar {
+      background: linear-gradient(90deg, #000 0%, #333 100%);
+    }
+    .gradient-bg {
+      background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 50%, #c084fc 100%);
+    }
+    .message-bubble {
+      max-width: 280px;
+      animation: fadeInUp 0.3s ease-out;
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .typing-indicator {
+      animation: typing 1.5s infinite;
+    }
+    @keyframes typing {
+      0%, 60%, 100% { opacity: 0.3; }
+      30% { opacity: 1; }
+    }
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .chart-bar {
+      height: 40px;
+      background: linear-gradient(180deg, #8b5cf6, #a855f7);
+      border-radius: 4px;
+      display: flex;
+      align-items: end;
+      padding: 4px;
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .performance-card {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    }
+    .trend-up {
+      color: #10b981;
+    }
+    .trend-down {
+      color: #ef4444;
+    }
+    .ai-avatar {
+      background: linear-gradient(135deg, #8b5cf6, #c084fc);
+      animation: pulse 2s infinite;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 h-screen flex flex-col">
+  <!-- iOS 状态栏 -->
+  <div class="status-bar h-12 text-white text-sm flex justify-between items-center px-6">
+    <div class="flex items-center space-x-1">
+      <span class="font-medium">9:41</span>
+    </div>
+    <div class="flex items-center space-x-1">
+      <i class="fas fa-signal text-xs"></i>
+      <i class="fas fa-wifi text-xs"></i>
+      <i class="fas fa-battery-full text-xs"></i>
+      <span class="text-xs">100%</span>
+    </div>
+  </div>
+
+  <!-- 导航栏 -->
+  <div class="gradient-bg h-16 flex items-center justify-between px-6 text-white">
+    <div class="flex items-center space-x-3">
+      <i class="fas fa-arrow-left text-xl"></i>
+      <div class="ai-avatar w-8 h-8 rounded-full flex items-center justify-center">
+        <i class="fas fa-robot text-lg"></i>
+      </div>
+      <div>
+        <h1 class="text-xl font-bold">AI智能助手</h1>
+        <div class="text-xs opacity-90">在线 · 随时为您服务</div>
+      </div>
+    </div>
+    <div class="flex items-center space-x-4">
+      <i class="fas fa-cog text-lg"></i>
+    </div>
+  </div>
+
+  <!-- 聊天内容区域 -->
+  <div class="flex-1 overflow-y-auto p-4 space-y-4">
+    <!-- 欢迎消息 -->
+    <div class="flex items-start space-x-3">
+      <div class="ai-avatar w-10 h-10 rounded-full flex items-center justify-center text-white">
+        <i class="fas fa-robot"></i>
+      </div>
+      <div class="message-bubble bg-white rounded-2xl rounded-tl-md p-4 shadow-lg">
+        <p class="text-gray-800">您好，王师傅！我是您的专属AI助手，可以帮您分析工作数据、查找相似任务、总结绩效表现。有什么需要帮助的吗？</p>
+      </div>
+    </div>
+
+    <!-- 快捷功能菜单 -->
+    <div class="flex items-start space-x-3">
+      <div class="ai-avatar w-10 h-10 rounded-full flex items-center justify-center text-white">
+        <i class="fas fa-lightbulb"></i>
+      </div>
+      <div class="message-bubble bg-white rounded-2xl rounded-tl-md p-4 shadow-lg">
+        <p class="text-gray-800 mb-3">为您推荐以下功能：</p>
+        <div class="quick-actions">
+          <button class="bg-blue-100 text-blue-800 px-3 py-2 rounded-xl text-sm font-medium hover:bg-blue-200 transition-colors">
+            <i class="fas fa-chart-line mr-1"></i>绩效分析
+          </button>
+          <button class="bg-green-100 text-green-800 px-3 py-2 rounded-xl text-sm font-medium hover:bg-green-200 transition-colors">
+            <i class="fas fa-search mr-1"></i>相似任务
+          </button>
+          <button class="bg-purple-100 text-purple-800 px-3 py-2 rounded-xl text-sm font-medium hover:bg-purple-200 transition-colors">
+            <i class="fas fa-calendar mr-1"></i>工作总结
+          </button>
+          <button class="bg-orange-100 text-orange-800 px-3 py-2 rounded-xl text-sm font-medium hover:bg-orange-200 transition-colors">
+            <i class="fas fa-route mr-1"></i>路线优化
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 用户查询 -->
+    <div class="flex items-start space-x-3 justify-end">
+      <div class="message-bubble bg-blue-500 text-white rounded-2xl rounded-tr-md p-4 shadow-lg">
+        <p>分析我上周的绩效表现</p>
+      </div>
+      <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white">
+        <i class="fas fa-user"></i>
+      </div>
+    </div>
+
+    <!-- AI分析结果 -->
+    <div class="flex items-start space-x-3">
+      <div class="ai-avatar w-10 h-10 rounded-full flex items-center justify-center text-white">
+        <i class="fas fa-chart-bar"></i>
+      </div>
+      <div class="message-bubble bg-white rounded-2xl rounded-tl-md p-4 shadow-lg">
+        <p class="text-gray-800 mb-4">为您分析上周（1月8日-1月14日）的绩效表现：</p>
+        
+        <!-- 绩效卡片 -->
+        <div class="performance-card rounded-xl p-4 text-white mb-4">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-sm opacity-90">综合评分</span>
+            <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full">优秀</span>
+          </div>
+          <div class="flex items-baseline space-x-2">
+            <span class="text-3xl font-bold">94.5</span>
+            <span class="text-sm">分</span>
+            <span class="text-sm bg-white bg-opacity-20 px-2 py-1 rounded-full">
+              <i class="fas fa-arrow-up mr-1"></i>+2.3
+            </span>
+          </div>
+        </div>
+
+        <!-- 详细指标 -->
+        <div class="space-y-3">
+          <div class="bg-gray-50 rounded-lg p-3">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-gray-700">任务完成率</span>
+              <span class="text-sm trend-up font-bold">100% ↑</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+              <div class="bg-green-500 h-2 rounded-full" style="width: 100%"></div>
+            </div>
+          </div>
+
+          <div class="bg-gray-50 rounded-lg p-3">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-gray-700">数据准确率</span>
+              <span class="text-sm trend-up font-bold">96.8% ↑</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+              <div class="bg-blue-500 h-2 rounded-full" style="width: 96.8%"></div>
+            </div>
+          </div>
+
+          <div class="bg-gray-50 rounded-lg p-3">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-gray-700">响应速度</span>
+              <span class="text-sm trend-down font-bold">88.2% ↓</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+              <div class="bg-yellow-500 h-2 rounded-full" style="width: 88.2%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 每日表现图表 -->
+        <div class="mt-4">
+          <div class="text-sm font-medium text-gray-700 mb-2">每日任务完成情况</div>
+          <div class="flex items-end space-x-1 h-16">
+            <div class="chart-bar" style="height: 80%;">8</div>
+            <div class="chart-bar" style="height: 60%;">6</div>
+            <div class="chart-bar" style="height: 100%;">10</div>
+            <div class="chart-bar" style="height: 90%;">9</div>
+            <div class="chart-bar" style="height: 70%;">7</div>
+            <div class="chart-bar" style="height: 85%;">8</div>
+            <div class="chart-bar" style="height: 95%;">9</div>
+          </div>
+          <div class="flex justify-between text-xs text-gray-500 mt-1">
+            <span>周一</span>
+            <span>周二</span>
+            <span>周三</span>
+            <span>周四</span>
+            <span>周五</span>
+            <span>周六</span>
+            <span>周日</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI建议 -->
+    <div class="flex items-start space-x-3">
+      <div class="ai-avatar w-10 h-10 rounded-full flex items-center justify-center text-white">
+        <i class="fas fa-lightbulb"></i>
+      </div>
+      <div class="message-bubble bg-yellow-50 border border-yellow-200 rounded-2xl rounded-tl-md p-4 shadow-lg">
+        <div class="flex items-center space-x-2 mb-2">
+          <i class="fas fa-star text-yellow-500"></i>
+          <span class="font-semibold text-yellow-800">智能建议</span>
+        </div>
+        <ul class="text-sm text-yellow-800 space-y-1">
+          <li>• 您的任务完成率保持满分，表现优异！</li>
+          <li>• 响应速度有所下降，建议优化工作路线规划</li>
+          <li>• 周三表现最佳，可总结成功经验并复制</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 输入提示 -->
+    <div class="flex items-start space-x-3">
+      <div class="ai-avatar w-10 h-10 rounded-full flex items-center justify-center text-white">
+        <div class="typing-indicator">
+          <i class="fas fa-ellipsis-h"></i>
+        </div>
+      </div>
+      <div class="message-bubble bg-gray-100 rounded-2xl rounded-tl-md p-4 shadow-lg">
+        <p class="text-gray-600 text-sm">还有其他需要分析的吗？比如查看相似任务、工作路线优化等...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 输入区域 -->
+  <div class="bg-white border-t border-gray-200 p-4">
+    <div class="flex items-center space-x-3">
+      <button class="w-10 h-10 bg-purple-500 text-white rounded-full flex items-center justify-center">
+        <i class="fas fa-microphone"></i>
+      </button>
+      <div class="flex-1 bg-gray-100 rounded-2xl px-4 py-2 flex items-center space-x-2">
+        <input type="text" placeholder="输入您的问题..." class="flex-1 bg-transparent outline-none text-gray-800">
+        <button class="text-gray-400">
+          <i class="fas fa-smile"></i>
+        </button>
+      </div>
+      <button class="w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- 底部 Tab Bar -->
+  <div class="h-20 bg-white border-t border-gray-200 flex justify-around items-center px-6">
+    <div class="flex flex-col items-center space-y-1">
+      <i class="fas fa-home text-xl text-gray-400"></i>
+      <span class="text-xs text-gray-400">首页</span>
+    </div>
+    <div class="flex flex-col items-center space-y-1">
+      <i class="fas fa-tasks text-xl text-gray-400"></i>
+      <span class="text-xs text-gray-400">任务</span>
+    </div>
+    <div class="flex flex-col items-center space-y-1">
+      <i class="fas fa-robot text-2xl text-purple-500"></i>
+      <span class="text-xs text-purple-500 font-medium">AI助手</span>
+    </div>
+    <div class="flex flex-col items-center space-y-1">
+      <i class="fas fa-user text-xl text-gray-400"></i>
+      <span class="text-xs text-gray-400">我的</span>
+    </div>
+  </div>
+</body>
+</html> 

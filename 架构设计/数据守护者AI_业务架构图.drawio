@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2025-01-17T00:00:00.000Z" agent="5.0" etag="xxx" version="22.1.16">
+  <diagram name="数据守护者AI业务架构图" id="architecture">
+    <mxGraphModel dx="1422" dy="765" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        
+        <!-- 用户层 -->
+        <mxCell id="user-layer" value="用户层" style="swimlane;whiteSpace=wrap;html=1;fillColor=#E1F5FE;strokeColor=#01579B;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="50" y="50" width="1050" height="120" as="geometry"/>
+        </mxCell>
+        
+        <!-- 一线网格员 -->
+        <mxCell id="gridworker-group" value="一线网格员 (9000人)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#4A148C;" vertex="1" parent="user-layer">
+          <mxGeometry x="20" y="30" width="300" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="gridworker1" value="网格员" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#BBDEFB;" vertex="1" parent="gridworker-group">
+          <mxGeometry x="10" y="30" width="60" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="gridworker2" value="户外作业" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#BBDEFB;" vertex="1" parent="gridworker-group">
+          <mxGeometry x="80" y="30" width="70" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="gridworker3" value="数据采集修正" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#BBDEFB;" vertex="1" parent="gridworker-group">
+          <mxGeometry x="160" y="30" width="90" height="30" as="geometry"/>
+        </mxCell>
+        
+        <!-- 管理员 -->
+        <mxCell id="manager-group" value="管理员 (数百人)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#4A148C;" vertex="1" parent="user-layer">
+          <mxGeometry x="350" y="30" width="400" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="manager1" value="供电所所长" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CE93D8;" vertex="1" parent="manager-group">
+          <mxGeometry x="10" y="30" width="80" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="manager2" value="县级管理员" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CE93D8;" vertex="1" parent="manager-group">
+          <mxGeometry x="100" y="30" width="80" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="manager3" value="市级管理员" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CE93D8;" vertex="1" parent="manager-group">
+          <mxGeometry x="190" y="30" width="80" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="manager4" value="省级管理员" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CE93D8;" vertex="1" parent="manager-group">
+          <mxGeometry x="280" y="30" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <!-- 业务应用层 -->
+        <mxCell id="app-layer" value="业务应用层" style="swimlane;whiteSpace=wrap;html=1;fillColor=#E8F5E8;strokeColor=#1B5E20;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="50" y="200" width="1050" height="150" as="geometry"/>
+        </mxCell>
+        
+        <!-- 网格员端APP -->
+        <mxCell id="mobile-app" value="网格员端 APP" style="swimlane;whiteSpace=wrap;html=1;fillColor=#C8E6C9;strokeColor=#2E7D32;" vertex="1" parent="app-layer">
+          <mxGeometry x="20" y="30" width="400" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="app1" value="智能工作台" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#A5D6A7;" vertex="1" parent="mobile-app">
+          <mxGeometry x="10" y="30" width="70" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="app2" value="AI助手" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#A5D6A7;" vertex="1" parent="mobile-app">
+          <mxGeometry x="90" y="30" width="60" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="app3" value="慧眼扫描" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#A5D6A7;" vertex="1" parent="mobile-app">
+          <mxGeometry x="160" y="30" width="70" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="app4" value="任务执行" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#A5D6A7;" vertex="1" parent="mobile-app">
+          <mxGeometry x="240" y="30" width="70" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="app5" value="个人中心" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#A5D6A7;" vertex="1" parent="mobile-app">
+          <mxGeometry x="320" y="30" width="70" height="30" as="geometry"/>
+        </mxCell>
+        
+        <!-- 管理端WEB -->
+        <mxCell id="web-app" value="管理端 WEB" style="swimlane;whiteSpace=wrap;html=1;fillColor=#C8E6C9;strokeColor=#2E7D32;" vertex="1" parent="app-layer">
+          <mxGeometry x="450" y="30" width="400" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="web1" value="治理驾驶舱" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#81C784;" vertex="1" parent="web-app">
+          <mxGeometry x="10" y="30" width="70" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="web2" value="GIS指挥地图" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#81C784;" vertex="1" parent="web-app">
+          <mxGeometry x="90" y="30" width="80" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="web3" value="任务池管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#81C784;" vertex="1" parent="web-app">
+          <mxGeometry x="180" y="30" width="70" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="web4" value="团队绩效" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#81C784;" vertex="1" parent="web-app">
+          <mxGeometry x="260" y="30" width="60" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="web5" value="AI智能派单" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#81C784;" vertex="1" parent="web-app">
+          <mxGeometry x="330" y="30" width="70" height="30" as="geometry"/>
+        </mxCell>
+        
+        <!-- 核心服务层 -->
+        <mxCell id="service-layer" value="核心服务层" style="swimlane;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#E65100;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="50" y="380" width="1050" height="150" as="geometry"/>
+        </mxCell>
+        
+        <!-- AI服务 -->
+        <mxCell id="ai-service" value="AI服务" style="swimlane;whiteSpace=wrap;html=1;fillColor=#FFE0B2;strokeColor=#F57C00;" vertex="1" parent="service-layer">
+          <mxGeometry x="20" y="30" width="250" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="ai1" value="OCR识别服务" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCC02;" vertex="1" parent="ai-service">
+          <mxGeometry x="10" y="30" width="90" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="ai2" value="数据校验服务" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCC02;" vertex="1" parent="ai-service">
+          <mxGeometry x="110" y="30" width="90" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="ai3" value="智能派单算法" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCC02;" vertex="1" parent="ai-service">
+          <mxGeometry x="10" y="70" width="90" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="ai4" value="对话机器人" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCC02;" vertex="1" parent="ai-service">
+          <mxGeometry x="110" y="70" width="90" height="30" as="geometry"/>
+        </mxCell>
+        
+        <!-- 业务服务 -->
+        <mxCell id="biz-service" value="业务服务" style="swimlane;whiteSpace=wrap;html=1;fillColor=#FFE0B2;strokeColor=#F57C00;" vertex="1" parent="service-layer">
+          <mxGeometry x="290" y="30" width="250" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="biz1" value="任务管理服务" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFB74D;" vertex="1" parent="biz-service">
+          <mxGeometry x="10" y="30" width="90" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="biz2" value="用户管理服务" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFB74D;" vertex="1" parent="biz-service">
+          <mxGeometry x="110" y="30" width="90" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="biz3" value="数据治理服务" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFB74D;" vertex="1" parent="biz-service">
+          <mxGeometry x="10" y="70" width="90" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="biz4" value="绩效统计服务" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFB74D;" vertex="1" parent="biz-service">
+          <mxGeometry x="110" y="70" width="90" height="30" as="geometry"/>
+        </mxCell>
+        
+        <!-- GIS服务 -->
+        <mxCell id="gis-service" value="GIS服务" style="swimlane;whiteSpace=wrap;html=1;fillColor=#FFE0B2;strokeColor=#F57C00;" vertex="1" parent="service-layer">
+          <mxGeometry x="560" y="30" width="200" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="gis1" value="地图服务" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF8A65;" vertex="1" parent="gis-service">
+          <mxGeometry x="10" y="30" width="80" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="gis2" value="位置定位" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF8A65;" vertex="1" parent="gis-service">
+          <mxGeometry x="100" y="30" width="80" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="gis3" value="路径规划" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF8A65;" vertex="1" parent="gis-service">
+          <mxGeometry x="10" y="70" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <!-- 数据层 -->
+        <mxCell id="data-layer" value="数据层" style="swimlane;whiteSpace=wrap;html=1;fillColor=#FCE4EC;strokeColor=#880E4F;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="50" y="560" width="1050" height="120" as="geometry"/>
+        </mxCell>
+        
+        <!-- 业务数据库 -->
+        <mxCell id="biz-db" value="业务数据库" style="swimlane;whiteSpace=wrap;html=1;fillColor=#F8BBD9;strokeColor=#AD1457;" vertex="1" parent="data-layer">
+          <mxGeometry x="20" y="30" width="300" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="db1" value="用户信息" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F48FB1;" vertex="1" parent="biz-db">
+          <mxGeometry x="10" y="30" width="60" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="db2" value="任务数据" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F48FB1;" vertex="1" parent="biz-db">
+          <mxGeometry x="80" y="30" width="60" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="db3" value="治理记录" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F48FB1;" vertex="1" parent="biz-db">
+          <mxGeometry x="150" y="30" width="60" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="db4" value="绩效数据" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F48FB1;" vertex="1" parent="biz-db">
+          <mxGeometry x="220" y="30" width="60" height="30" as="geometry"/>
+        </mxCell>
+        
+        <!-- AI训练数据 -->
+        <mxCell id="ai-db" value="AI训练数据" style="swimlane;whiteSpace=wrap;html=1;fillColor=#F8BBD9;strokeColor=#AD1457;" vertex="1" parent="data-layer">
+          <mxGeometry x="350" y="30" width="250" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="aidb1" value="OCR训练集" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EC407A;" vertex="1" parent="ai-db">
+          <mxGeometry x="10" y="30" width="70" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="aidb2" value="历史治理数据" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EC407A;" vertex="1" parent="ai-db">
+          <mxGeometry x="90" y="30" width="80" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="aidb3" value="规则知识库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EC407A;" vertex="1" parent="ai-db">
+          <mxGeometry x="180" y="30" width="70" height="30" as="geometry"/>
+        </mxCell>
+        
+        <!-- 基础设施层 -->
+        <mxCell id="infra-layer" value="基础设施层" style="swimlane;whiteSpace=wrap;html=1;fillColor=#F1F8E9;strokeColor=#33691E;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="50" y="710" width="500" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="infra1" value="云计算平台" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#AED581;" vertex="1" parent="infra-layer">
+          <mxGeometry x="20" y="30" width="80" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="infra2" value="CDN加速" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#AED581;" vertex="1" parent="infra-layer">
+          <mxGeometry x="120" y="30" width="70" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="infra3" value="安全认证" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#AED581;" vertex="1" parent="infra-layer">
+          <mxGeometry x="210" y="30" width="70" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="infra4" value="监控告警" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#AED581;" vertex="1" parent="infra-layer">
+          <mxGeometry x="300" y="30" width="70" height="30" as="geometry"/>
+        </mxCell>
+        
+        <!-- 外部系统 -->
+        <mxCell id="external-layer" value="外部系统" style="swimlane;whiteSpace=wrap;html=1;fillColor=#EFEBE9;strokeColor=#5D4037;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="580" y="710" width="520" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="ext1" value="企业统一认证" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D7CCC8;" vertex="1" parent="external-layer">
+          <mxGeometry x="20" y="30" width="90" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="ext2" value="第三方地图API" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D7CCC8;" vertex="1" parent="external-layer">
+          <mxGeometry x="130" y="30" width="100" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="ext3" value="短信通知服务" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D7CCC8;" vertex="1" parent="external-layer">
+          <mxGeometry x="250" y="30" width="90" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="ext4" value="文件存储服务" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D7CCC8;" vertex="1" parent="external-layer">
+          <mxGeometry x="360" y="30" width="90" height="30" as="geometry"/>
+        </mxCell>
+        
+        <!-- 连接线 -->
+        <!-- 用户到应用层 -->
+        <mxCell id="edge1" edge="1" parent="1" source="gridworker1" target="app1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge2" edge="1" parent="1" source="manager1" target="web1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- 应用层到服务层 -->
+        <mxCell id="edge3" edge="1" parent="1" source="app3" target="ai1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge4" edge="1" parent="1" source="web5" target="ai3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- 服务层到数据层 -->
+        <mxCell id="edge5" edge="1" parent="1" source="biz1" target="db2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge6" edge="1" parent="1" source="ai1" target="aidb1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- 标题 -->
+        <mxCell id="title" value="数据守护者AI - 业务架构图" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="450" y="10" width="300" height="30" as="geometry"/>
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile> 
