@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>任务详情</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .status-bar {
+      background: linear-gradient(90deg, #000 0%, #333 100%);
+    }
+    .gradient-bg {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    .timeline-item {
+      position: relative;
+      padding-left: 30px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      width: 8px;
+      height: 8px;
+      background: #3b82f6;
+      border-radius: 50%;
+    }
+    .timeline-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 20px;
+      width: 2px;
+      height: calc(100% - 12px);
+      background: #e5e7eb;
+    }
+    .priority-urgent {
+      background: linear-gradient(45deg, #ef4444, #dc2626);
+    }
+    .map-pin {
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 h-screen flex flex-col">
+  <!-- iOS 状态栏 -->
+  <div class="status-bar h-12 text-white text-sm flex justify-between items-center px-6">
+    <div class="flex items-center space-x-1">
+      <span class="font-medium">9:41</span>
+    </div>
+    <div class="flex items-center space-x-1">
+      <i class="fas fa-signal text-xs"></i>
+      <i class="fas fa-wifi text-xs"></i>
+      <i class="fas fa-battery-full text-xs"></i>
+      <span class="text-xs">100%</span>
+    </div>
+  </div>
+
+  <!-- 导航栏 -->
+  <div class="gradient-bg h-16 flex items-center justify-between px-6 text-white">
+    <div class="flex items-center space-x-3">
+      <i class="fas fa-arrow-left text-xl"></i>
+      <h1 class="text-xl font-bold">任务详情</h1>
+    </div>
+    <div class="flex items-center space-x-4">
+      <i class="fas fa-share-alt text-lg"></i>
+      <i class="fas fa-ellipsis-v text-lg"></i>
+    </div>
+  </div>
+
+  <!-- 主要内容区域 -->
+  <div class="flex-1 overflow-y-auto">
+    <!-- 任务优先级标识 -->
+    <div class="priority-urgent mx-6 mt-4 rounded-2xl p-4 text-white shadow-lg">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+          <i class="fas fa-exclamation-triangle text-2xl"></i>
+          <div>
+            <div class="text-lg font-bold">紧急任务</div>
+            <div class="text-sm opacity-90">重要客户数据核实</div>
+          </div>
+        </div>
+        <div class="text-right">
+          <div class="text-sm opacity-90">任务ID</div>
+          <div class="font-bold">#2025001</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 任务基本信息 -->
+    <div class="mx-6 mt-4 bg-white rounded-2xl p-6 shadow-lg">
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">基本信息</h3>
+      
+      <div class="space-y-4">
+        <div class="flex items-start space-x-3">
+          <i class="fas fa-user text-blue-500 mt-1"></i>
+          <div class="flex-1">
+            <div class="text-sm text-gray-600">客户姓名</div>
+            <div class="font-semibold">张总 (重要客户)</div>
+          </div>
+        </div>
+
+        <div class="flex items-start space-x-3">
+          <i class="fas fa-map-marker-alt text-red-500 mt-1 map-pin"></i>
+          <div class="flex-1">
+            <div class="text-sm text-gray-600">客户地址</div>
+            <div class="font-semibold">深圳市南山区科技园A座2201室</div>
+            <div class="text-xs text-gray-500 mt-1">距离您 0.8km · 预计3分钟</div>
+          </div>
+        </div>
+
+        <div class="flex items-start space-x-3">
+          <i class="fas fa-phone text-green-500 mt-1"></i>
+          <div class="flex-1">
+            <div class="text-sm text-gray-600">联系电话</div>
+            <div class="font-semibold">138****8888</div>
+          </div>
+        </div>
+
+        <div class="flex items-start space-x-3">
+          <i class="fas fa-file-contract text-purple-500 mt-1"></i>
+          <div class="flex-1">
+            <div class="text-sm text-gray-600">合同编号</div>
+            <div class="font-semibold">HT2025001-VIP</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 任务描述 -->
+    <div class="mx-6 mt-4 bg-white rounded-2xl p-6 shadow-lg">
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">任务描述</h3>
+      <div class="bg-blue-50 rounded-xl p-4">
+        <p class="text-gray-700 leading-relaxed">
+          请前往客户现场核实地址信息的准确性，重点检查：
+        </p>
+        <ul class="mt-3 space-y-2 text-gray-700">
+          <li class="flex items-start space-x-2">
+            <i class="fas fa-check-circle text-green-500 mt-0.5 text-sm"></i>
+            <span>营业执照上的注册地址与实际地址是否一致</span>
+          </li>
+          <li class="flex items-start space-x-2">
+            <i class="fas fa-check-circle text-green-500 mt-0.5 text-sm"></i>
+            <span>合同中的服务地址信息核对</span>
+          </li>
+          <li class="flex items-start space-x-2">
+            <i class="fas fa-check-circle text-green-500 mt-0.5 text-sm"></i>
+            <span>联系电话的有效性确认</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- AI 建议 -->
+    <div class="mx-6 mt-4 bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl p-6 text-white shadow-lg">
+      <div class="flex items-center space-x-2 mb-3">
+        <i class="fas fa-robot text-xl"></i>
+        <h3 class="text-lg font-semibold">AI 智能建议</h3>
+      </div>
+      <div class="bg-white bg-opacity-20 rounded-xl p-4">
+        <p class="text-sm">根据历史数据分析，该客户的地址信息在3个月前有过变更记录。建议重点关注楼层和房间号的准确性。</p>
+        <div class="mt-3 flex items-center space-x-2">
+          <i class="fas fa-lightbulb text-yellow-300"></i>
+          <span class="text-sm">推荐使用"慧眼扫描"功能快速核对营业执照</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 历史记录 -->
+    <div class="mx-6 mt-4 mb-6 bg-white rounded-2xl p-6 shadow-lg">
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">执行记录</h3>
+      
+      <div class="space-y-4">
+        <div class="timeline-item">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="font-semibold text-gray-800">任务已派发</div>
+              <div class="text-sm text-gray-600">系统自动分配给王师傅</div>
+            </div>
+            <div class="text-xs text-gray-500">09:30</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="font-semibold text-gray-800">任务已接收</div>
+              <div class="text-sm text-gray-600">王师傅确认接收任务</div>
+            </div>
+            <div class="text-xs text-gray-500">09:32</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="font-semibold text-blue-600">正在执行中</div>
+              <div class="text-sm text-gray-600">预计完成时间：11:00</div>
+            </div>
+            <div class="text-xs text-gray-500">现在</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 操作按钮 -->
+  <div class="bg-white border-t border-gray-200 p-6 space-y-3">
+    <button class="w-full bg-blue-500 text-white py-4 rounded-2xl font-semibold text-lg shadow-lg">
+      <i class="fas fa-camera mr-2"></i>开始慧眼扫描
+    </button>
+    
+    <div class="grid grid-cols-2 gap-3">
+      <button class="bg-green-500 text-white py-3 rounded-xl font-semibold">
+        <i class="fas fa-map-marked-alt mr-2"></i>导航
+      </button>
+      <button class="bg-orange-500 text-white py-3 rounded-xl font-semibold">
+        <i class="fas fa-phone mr-2"></i>联系客户
+      </button>
+    </div>
+  </div>
+
+  <!-- 底部 Tab Bar -->
+  <div class="h-20 bg-white border-t border-gray-200 flex justify-around items-center px-6">
+    <div class="flex flex-col items-center space-y-1">
+      <i class="fas fa-home text-xl text-gray-400"></i>
+      <span class="text-xs text-gray-400">首页</span>
+    </div>
+    <div class="flex flex-col items-center space-y-1">
+      <i class="fas fa-tasks text-2xl text-blue-500"></i>
+      <span class="text-xs text-blue-500 font-medium">任务</span>
+    </div>
+    <div class="flex flex-col items-center space-y-1">
+      <i class="fas fa-qrcode text-xl text-gray-400"></i>
+      <span class="text-xs text-gray-400">扫描</span>
+    </div>
+    <div class="flex flex-col items-center space-y-1">
+      <i class="fas fa-user text-xl text-gray-400"></i>
+      <span class="text-xs text-gray-400">我的</span>
+    </div>
+  </div>
+</body>
+</html> 

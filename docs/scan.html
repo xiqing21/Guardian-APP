@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>慧眼扫描</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .status-bar {
+      background: linear-gradient(90deg, #000 0%, #333 100%);
+    }
+    .camera-frame {
+      background: rgba(0,0,0,0.8);
+      position: relative;
+    }
+    .scan-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 280px;
+      height: 180px;
+      border: 2px solid #10b981;
+      border-radius: 12px;
+    }
+    .scan-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #10b981, transparent);
+      animation: scanning 2s infinite;
+    }
+    @keyframes scanning {
+      0% { top: 0; }
+      50% { top: calc(100% - 2px); }
+      100% { top: 0; }
+    }
+    .corner-border {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+    }
+    .corner-border::before,
+    .corner-border::after {
+      content: '';
+      position: absolute;
+      background: #10b981;
+    }
+    .corner-border.top-left {
+      top: -2px;
+      left: -2px;
+      border-top: 4px solid #10b981;
+      border-left: 4px solid #10b981;
+      border-radius: 12px 0 0 0;
+    }
+    .corner-border.top-right {
+      top: -2px;
+      right: -2px;
+      border-top: 4px solid #10b981;
+      border-right: 4px solid #10b981;
+      border-radius: 0 12px 0 0;
+    }
+    .corner-border.bottom-left {
+      bottom: -2px;
+      left: -2px;
+      border-bottom: 4px solid #10b981;
+      border-left: 4px solid #10b981;
+      border-radius: 0 0 0 12px;
+    }
+    .corner-border.bottom-right {
+      bottom: -2px;
+      right: -2px;
+      border-bottom: 4px solid #10b981;
+      border-right: 4px solid #10b981;
+      border-radius: 0 0 12px 0;
+    }
+    .recognition-result {
+      animation: slideUp 0.5s ease-out;
+    }
+    @keyframes slideUp {
+      from { 
+        transform: translateY(100%);
+        opacity: 0;
+      }
+      to { 
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    .diff-highlight {
+      background: linear-gradient(90deg, #fef3c7, #fbbf24);
+      animation: pulse 2s infinite;
+    }
+    .match-highlight {
+      background: linear-gradient(90deg, #d1fae5, #10b981);
+    }
+    .pulse-button {
+      animation: pulse 2s infinite;
+    }
+  </style>
+</head>
+<body class="bg-black h-screen flex flex-col">
+  <!-- iOS 状态栏 -->
+  <div class="status-bar h-12 text-white text-sm flex justify-between items-center px-6">
+    <div class="flex items-center space-x-1">
+      <span class="font-medium">9:41</span>
+    </div>
+    <div class="flex items-center space-x-1">
+      <i class="fas fa-signal text-xs"></i>
+      <i class="fas fa-wifi text-xs"></i>
+      <i class="fas fa-battery-full text-xs"></i>
+      <span class="text-xs">100%</span>
+    </div>
+  </div>
+
+  <!-- 导航栏 -->
+  <div class="bg-black h-16 flex items-center justify-between px-6 text-white">
+    <div class="flex items-center space-x-3">
+      <i class="fas fa-arrow-left text-xl"></i>
+      <h1 class="text-xl font-bold">慧眼扫描</h1>
+    </div>
+    <div class="flex items-center space-x-4">
+      <i class="fas fa-flash text-lg"></i>
+      <i class="fas fa-cog text-lg"></i>
+    </div>
+  </div>
+
+  <!-- 相机预览区域 -->
+  <div class="camera-frame flex-1 relative">
+    <!-- 模拟相机画面 -->
+    <div class="absolute inset-0 bg-gray-800 opacity-50"></div>
+    
+    <!-- 扫描框 -->
+    <div class="scan-overlay">
+      <div class="corner-border top-left"></div>
+      <div class="corner-border top-right"></div>
+      <div class="corner-border bottom-left"></div>
+      <div class="corner-border bottom-right"></div>
+      <div class="scan-line"></div>
+    </div>
+
+    <!-- 扫描提示 -->
+    <div class="absolute top-20 left-1/2 transform -translate-x-1/2 text-center text-white">
+      <i class="fas fa-id-card text-4xl mb-3 text-green-400"></i>
+      <p class="text-lg font-semibold">对准营业执照</p>
+      <p class="text-sm opacity-80 mt-1">请将证照完整置于扫描框内</p>
+    </div>
+
+    <!-- 底部操作提示 -->
+    <div class="absolute bottom-32 left-1/2 transform -translate-x-1/2 text-center text-white">
+      <div class="bg-black bg-opacity-50 rounded-2xl px-6 py-3">
+        <p class="text-sm">
+          <i class="fas fa-lightbulb text-yellow-400 mr-2"></i>
+          确保光线充足，避免反光
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 扫描结果区域 -->
+  <div class="recognition-result bg-white rounded-t-3xl shadow-2xl max-h-96 overflow-y-auto">
+    <div class="p-6">
+      <!-- 结果标题 -->
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-check-circle text-green-500 text-xl"></i>
+          <h3 class="text-lg font-semibold text-gray-800">识别完成</h3>
+        </div>
+        <div class="text-sm text-gray-500">准确率: 98.5%</div>
+      </div>
+
+      <!-- 识别信息对比 -->
+      <div class="space-y-4">
+        <div class="bg-gray-50 rounded-xl p-4">
+          <div class="text-sm font-semibold text-gray-600 mb-3">企业信息对比</div>
+          
+          <!-- 企业名称 -->
+          <div class="mb-4">
+            <div class="text-xs text-gray-500 mb-1">企业名称</div>
+            <div class="match-highlight rounded-lg p-3">
+              <div class="flex items-center justify-between">
+                <span class="font-semibold">深圳市科技创新有限公司</span>
+                <i class="fas fa-check text-green-600"></i>
+              </div>
+              <div class="text-xs text-gray-600 mt-1">✓ 与系统记录一致</div>
+            </div>
+          </div>
+
+          <!-- 统一社会信用代码 -->
+          <div class="mb-4">
+            <div class="text-xs text-gray-500 mb-1">统一社会信用代码</div>
+            <div class="match-highlight rounded-lg p-3">
+              <div class="flex items-center justify-between">
+                <span class="font-semibold">91440300MA5XXXXX</span>
+                <i class="fas fa-check text-green-600"></i>
+              </div>
+              <div class="text-xs text-gray-600 mt-1">✓ 与系统记录一致</div>
+            </div>
+          </div>
+
+          <!-- 注册地址 - 发现差异 -->
+          <div class="mb-4">
+            <div class="text-xs text-gray-500 mb-1">注册地址</div>
+            <div class="diff-highlight rounded-lg p-3 border-2 border-yellow-400">
+              <div class="flex items-center justify-between">
+                <div class="flex-1">
+                  <div class="font-semibold text-yellow-800">深圳市南山区科技园A座2201室</div>
+                  <div class="text-xs text-gray-600 mt-1">
+                    <i class="fas fa-exclamation-triangle text-yellow-600 mr-1"></i>
+                    与系统记录不一致
+                  </div>
+                </div>
+                <i class="fas fa-exclamation-triangle text-yellow-600"></i>
+              </div>
+            </div>
+            
+            <!-- 系统中的地址 -->
+            <div class="mt-2 bg-red-50 border border-red-200 rounded-lg p-3">
+              <div class="text-xs text-red-600 mb-1">系统中地址</div>
+              <div class="text-sm text-red-800">深圳市南山区科技园A座2101室</div>
+            </div>
+          </div>
+
+          <!-- 法定代表人 -->
+          <div>
+            <div class="text-xs text-gray-500 mb-1">法定代表人</div>
+            <div class="match-highlight rounded-lg p-3">
+              <div class="flex items-center justify-between">
+                <span class="font-semibold">张总</span>
+                <i class="fas fa-check text-green-600"></i>
+              </div>
+              <div class="text-xs text-gray-600 mt-1">✓ 与系统记录一致</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI建议 -->
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-4">
+          <div class="flex items-center space-x-2 mb-2">
+            <i class="fas fa-robot text-blue-500"></i>
+            <span class="font-semibold text-blue-800">AI智能分析</span>
+          </div>
+          <p class="text-sm text-blue-700">
+            检测到注册地址存在差异（楼层不同：2201室 vs 2101室），建议进一步确认是否为地址变更或录入错误。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 操作按钮 -->
+  <div class="bg-white p-6 space-y-3">
+    <button class="w-full bg-yellow-500 text-white py-4 rounded-2xl font-semibold text-lg shadow-lg pulse-button">
+      <i class="fas fa-edit mr-2"></i>确认地址变更
+    </button>
+    
+    <div class="grid grid-cols-2 gap-3">
+      <button class="bg-green-500 text-white py-3 rounded-xl font-semibold">
+        <i class="fas fa-camera mr-2"></i>重新扫描
+      </button>
+      <button class="bg-blue-500 text-white py-3 rounded-xl font-semibold">
+        <i class="fas fa-save mr-2"></i>保存结果
+      </button>
+    </div>
+  </div>
+
+  <!-- 底部 Tab Bar -->
+  <div class="h-20 bg-white border-t border-gray-200 flex justify-around items-center px-6">
+    <div class="flex flex-col items-center space-y-1">
+      <i class="fas fa-home text-xl text-gray-400"></i>
+      <span class="text-xs text-gray-400">首页</span>
+    </div>
+    <div class="flex flex-col items-center space-y-1">
+      <i class="fas fa-tasks text-xl text-gray-400"></i>
+      <span class="text-xs text-gray-400">任务</span>
+    </div>
+    <div class="flex flex-col items-center space-y-1">
+      <i class="fas fa-qrcode text-2xl text-blue-500"></i>
+      <span class="text-xs text-blue-500 font-medium">扫描</span>
+    </div>
+    <div class="flex flex-col items-center space-y-1">
+      <i class="fas fa-user text-xl text-gray-400"></i>
+      <span class="text-xs text-gray-400">我的</span>
+    </div>
+  </div>
+</body>
+</html> 

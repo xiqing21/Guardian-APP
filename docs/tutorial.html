@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新手引导</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .status-bar {
+      background: linear-gradient(90deg, #000 0%, #333 100%);
+    }
+    .gradient-bg {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    }
+    .welcome-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    .feature-card {
+      transition: all 0.3s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body class="bg-gray-50 h-screen flex flex-col">
+  <!-- iOS 状态栏 -->
+  <div class="status-bar h-12 text-white text-sm flex justify-between items-center px-6">
+    <div class="flex items-center space-x-1">
+      <span class="font-medium">9:41</span>
+    </div>
+    <div class="flex items-center space-x-1">
+      <i class="fas fa-signal text-xs"></i>
+      <i class="fas fa-wifi text-xs"></i>
+      <i class="fas fa-battery-full text-xs"></i>
+      <span class="text-xs">100%</span>
+    </div>
+  </div>
+
+  <!-- 导航栏 -->
+  <div class="gradient-bg h-16 flex items-center justify-between px-6 text-white">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+        <i class="fas fa-graduation-cap text-lg"></i>
+      </div>
+      <h1 class="text-xl font-bold">新手引导</h1>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button class="text-white text-sm">跳过</button>
+    </div>
+  </div>
+
+  <!-- 欢迎卡片 -->
+  <div class="welcome-card mx-6 mt-4 rounded-2xl p-6 text-white shadow-xl">
+    <div class="text-center">
+      <div class="w-20 h-20 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+        <i class="fas fa-shield-alt text-4xl"></i>
+      </div>
+      <h2 class="text-2xl font-bold mb-2">欢迎使用数据守护者AI！</h2>
+      <p class="text-sm opacity-90 mb-4">让我们通过简单的步骤，快速了解APP的核心功能</p>
+      
+      <!-- 进度指示器 -->
+      <div class="flex items-center justify-center space-x-2 mb-4">
+        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-sm font-bold">1</div>
+        <div class="w-8 h-1 bg-white bg-opacity-30 rounded"></div>
+        <div class="w-8 h-8 bg-white bg-opacity-30 rounded-full flex items-center justify-center text-sm font-bold">2</div>
+        <div class="w-8 h-1 bg-white bg-opacity-30 rounded"></div>
+        <div class="w-8 h-8 bg-white bg-opacity-30 rounded-full flex items-center justify-center text-sm font-bold">3</div>
+        <div class="w-8 h-1 bg-white bg-opacity-30 rounded"></div>
+        <div class="w-8 h-8 bg-white bg-opacity-30 rounded-full flex items-center justify-center text-sm font-bold">4</div>
+      </div>
+      
+      <div class="text-xs opacity-80">步骤 1/4 - 了解基础功能</div>
+    </div>
+  </div>
+
+  <!-- 功能介绍 -->
+  <div class="px-6 py-4">
+    <h3 class="font-semibold text-gray-800 mb-4 text-center">核心功能一览</h3>
+    
+    <div class="space-y-4">
+      <!-- 智能工作台 -->
+      <div class="feature-card bg-white rounded-2xl p-4 shadow-lg">
+        <div class="flex items-center space-x-4">
+          <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center">
+            <i class="fas fa-home text-white text-xl"></i>
+          </div>
+          <div class="flex-1">
+            <h4 class="font-semibold text-gray-800">智能工作台</h4>
+            <p class="text-sm text-gray-600">查看今日任务、数据健康分和工作统计</p>
+          </div>
+          <div class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium">
+            主界面
+          </div>
+        </div>
+      </div>
+
+      <!-- 慧眼扫描 -->
+      <div class="feature-card bg-white rounded-2xl p-4 shadow-lg">
+        <div class="flex items-center space-x-4">
+          <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center">
+            <i class="fas fa-camera text-white text-xl"></i>
+          </div>
+          <div class="flex-1">
+            <h4 class="font-semibold text-gray-800">慧眼扫描</h4>
+            <p class="text-sm text-gray-600">智能识别证照信息，自动对比系统数据</p>
+          </div>
+          <div class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium">
+            核心功能
+          </div>
+        </div>
+      </div>
+
+      <!-- AI助手 -->
+      <div class="feature-card bg-white rounded-2xl p-4 shadow-lg">
+        <div class="flex items-center space-x-4">
+          <div class="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center">
+            <i class="fas fa-robot text-white text-xl"></i>
+          </div>
+          <div class="flex-1">
+            <h4 class="font-semibold text-gray-800">AI智能助手</h4>
+            <p class="text-sm text-gray-600">智能分析工作数据，提供优化建议</p>
+          </div>
+          <div class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs font-medium">
+            AI驱动
+          </div>
+        </div>
+      </div>
+
+      <!-- 任务管理 -->
+      <div class="feature-card bg-white rounded-2xl p-4 shadow-lg">
+        <div class="flex items-center space-x-4">
+          <div class="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center">
+            <i class="fas fa-tasks text-white text-xl"></i>
+          </div>
+          <div class="flex-1">
+            <h4 class="font-semibold text-gray-800">智能任务管理</h4>
+            <p class="text-sm text-gray-600">接收、执行和跟踪各类数据治理任务</p>
+          </div>
+          <div class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs font-medium">
+            高效
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 快速开始提示 -->
+  <div class="mx-6 mt-4 bg-green-50 border border-green-200 rounded-2xl p-4">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+        <i class="fas fa-lightbulb text-white"></i>
+      </div>
+      <div class="flex-1">
+        <h4 class="font-semibold text-green-800">小贴士</h4>
+        <p class="text-sm text-green-700">点击右下角的AI助手按钮，随时获取操作帮助和建议</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部操作栏 -->
+  <div class="bg-white border-t border-gray-200 p-6 space-y-3 mt-auto">
+    <button class="w-full bg-green-500 text-white py-4 rounded-2xl font-semibold text-lg shadow-lg">
+      <i class="fas fa-play mr-2"></i>开始教程
+    </button>
+    
+    <div class="grid grid-cols-2 gap-3">
+      <button class="bg-gray-200 text-gray-800 py-3 rounded-xl font-semibold">
+        <i class="fas fa-video mr-2"></i>观看视频
+      </button>
+      <button class="bg-blue-500 text-white py-3 rounded-xl font-semibold">
+        <i class="fas fa-book mr-2"></i>使用手册
+      </button>
+    </div>
+  </div>
+
+  <!-- 底部 Tab Bar -->
+  <div class="h-20 bg-white border-t border-gray-200 flex justify-around items-center px-6">
+    <div class="flex flex-col items-center space-y-1">
+      <i class="fas fa-home text-xl text-gray-400"></i>
+      <span class="text-xs text-gray-400">首页</span>
+    </div>
+    <div class="flex flex-col items-center space-y-1">
+      <i class="fas fa-tasks text-xl text-gray-400"></i>
+      <span class="text-xs text-gray-400">任务</span>
+    </div>
+    <div class="flex flex-col items-center space-y-1">
+      <i class="fas fa-qrcode text-xl text-gray-400"></i>
+      <span class="text-xs text-gray-400">扫描</span>
+    </div>
+    <div class="flex flex-col items-center space-y-1">
+      <i class="fas fa-graduation-cap text-2xl text-green-500"></i>
+      <span class="text-xs text-green-500 font-medium">教程</span>
+    </div>
+  </div>
+</body>
+</html>
