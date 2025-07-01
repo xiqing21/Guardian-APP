@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>任务池管理</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .status-bar {
+      background: linear-gradient(90deg, #000 0%, #333 100%);
+    }
+    .gradient-bg {
+      background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    }
+    .task-card {
+      transition: all 0.3s ease;
+      border-left: 4px solid transparent;
+    }
+    .task-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    .task-urgent {
+      border-left-color: #ef4444;
+      background: linear-gradient(90deg, #fef2f2, #ffffff);
+    }
+    .task-high {
+      border-left-color: #f59e0b;
+      background: linear-gradient(90deg, #fffbeb, #ffffff);
+    }
+    .task-normal {
+      border-left-color: #3b82f6;
+      background: linear-gradient(90deg, #eff6ff, #ffffff);
+    }
+    .filter-active {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: white;
+    }
+    .ai-recommendation {
+      background: linear-gradient(135deg, #8b5cf6, #a855f7);
+      animation: pulse 2s infinite;
+    }
+    .member-suggestion {
+      transition: all 0.2s ease;
+    }
+    .member-suggestion:hover {
+      transform: scale(1.02);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .progress-ring {
+      transform: rotate(-90deg);
+    }
+    .progress-ring-circle {
+      transition: stroke-dasharray 0.35s;
+      transform-origin: 50% 50%;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 h-screen flex flex-col">
+  <!-- iOS 状态栏 -->
+  <div class="status-bar h-12 text-white text-sm flex justify-between items-center px-6">
+    <div class="flex items-center space-x-1">
+      <span class="font-medium">9:41</span>
+    </div>
+    <div class="flex items-center space-x-1">
+      <i class="fas fa-signal text-xs"></i>
+      <i class="fas fa-wifi text-xs"></i>
+      <i class="fas fa-battery-full text-xs"></i>
+      <span class="text-xs">100%</span>
+    </div>
+  </div>
+
+  <!-- 导航栏 -->
+  <div class="gradient-bg h-16 flex items-center justify-between px-6 text-white">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+        <i class="fas fa-inbox text-lg"></i>
+      </div>
+      <h1 class="text-xl font-bold">任务池管理</h1>
+    </div>
+    <div class="flex items-center space-x-4">
+      <div class="relative">
+        <i class="fas fa-plus-circle text-xl"></i>
+      </div>
+      <i class="fas fa-filter text-lg"></i>
+    </div>
+  </div>
+
+  <!-- 统计概览 -->
+  <div class="bg-white mx-4 mt-4 rounded-2xl p-4 shadow-lg">
+    <div class="grid grid-cols-4 gap-4 text-center">
+      <div>
+        <div class="text-2xl font-bold text-red-500">8</div>
+        <div class="text-xs text-gray-600">紧急</div>
+      </div>
+      <div>
+        <div class="text-2xl font-bold text-orange-500">15</div>
+        <div class="text-xs text-gray-600">高优先级</div>
+      </div>
+      <div>
+        <div class="text-2xl font-bold text-blue-500">32</div>
+        <div class="text-xs text-gray-600">普通</div>
+      </div>
+      <div>
+        <div class="text-2xl font-bold text-gray-500">55</div>
+        <div class="text-xs text-gray-600">总计</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 筛选器 -->
+  <div class="px-4 py-3">
+    <div class="flex items-center space-x-2 overflow-x-auto">
+      <button class="filter-active px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap">
+        全部
+      </button>
+      <button class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 whitespace-nowrap">
+        紧急
+      </button>
+      <button class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 whitespace-nowrap">
+        今日到期
+      </button>
+      <button class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 whitespace-nowrap">
+        VIP客户
+      </button>
+      <button class="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 whitespace-nowrap">
+        未分配
+      </button>
+    </div>
+  </div>
+
+  <!-- 任务列表 -->
+  <div class="flex-1 overflow-y-auto px-4 space-y-3">
+    <!-- 紧急任务 -->
+    <div class="task-card task-urgent rounded-xl p-4 shadow-md">
+      <div class="flex items-start justify-between mb-3">
+        <div class="flex items-center space-x-2">
+          <span class="bg-red-500 text-white px-2 py-1 text-xs rounded-full font-medium">紧急</span>
+          <span class="bg-purple-100 text-purple-800 px-2 py-1 text-xs rounded-full">VIP客户</span>
+        </div>
+        <div class="text-xs text-gray-500">2分钟前</div>
+      </div>
+      
+      <h3 class="font-semibold text-gray-800 mb-2">华为技术有限公司数据核实</h3>
+      <p class="text-sm text-gray-600 mb-3">客户报告地址信息与系统不符，需要紧急现场核实并更新数据</p>
+      
+      <div class="flex items-center space-x-4 text-xs text-gray-500 mb-3">
+        <span><i class="fas fa-map-marker-alt mr-1"></i>南山区科技园</span>
+        <span><i class="fas fa-clock mr-1"></i>1小时内</span>
+        <span><i class="fas fa-star mr-1"></i>重要客户</span>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <div class="ai-recommendation text-white px-3 py-1 rounded-full text-xs font-medium">
+            <i class="fas fa-robot mr-1"></i>AI推荐
+          </div>
+        </div>
+        <button class="bg-red-500 text-white px-4 py-2 rounded-lg text-sm font-medium">
+          <i class="fas fa-paper-plane mr-1"></i>智能派单
+        </button>
+      </div>
+    </div>
+
+    <!-- 高优先级任务 -->
+    <div class="task-card task-high rounded-xl p-4 shadow-md">
+      <div class="flex items-start justify-between mb-3">
+        <div class="flex items-center space-x-2">
+          <span class="bg-orange-500 text-white px-2 py-1 text-xs rounded-full font-medium">高优先级</span>
+          <span class="bg-blue-100 text-blue-800 px-2 py-1 text-xs rounded-full">合同核实</span>
+        </div>
+        <div class="text-xs text-gray-500">15分钟前</div>
+      </div>
+      
+      <h3 class="font-semibold text-gray-800 mb-2">批量合同信息扫描更新</h3>
+      <p class="text-sm text-gray-600 mb-3">需要对科技园区域10份合同进行OCR扫描和信息核对</p>
+      
+      <div class="flex items-center space-x-4 text-xs text-gray-500 mb-3">
+        <span><i class="fas fa-file-contract mr-1"></i>10份合同</span>
+        <span><i class="fas fa-clock mr-1"></i>今日内</span>
+        <span><i class="fas fa-map-marker-alt mr-1"></i>科技园区域</span>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <span class="text-xs text-gray-600">预计时长: 2-3小时</span>
+        </div>
+        <button class="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm font-medium">
+          <i class="fas fa-paper-plane mr-1"></i>智能派单
+        </button>
+      </div>
+    </div>
+
+    <!-- 普通任务 -->
+    <div class="task-card task-normal rounded-xl p-4 shadow-md">
+      <div class="flex items-start justify-between mb-3">
+        <div class="flex items-center space-x-2">
+          <span class="bg-blue-500 text-white px-2 py-1 text-xs rounded-full font-medium">普通</span>
+          <span class="bg-green-100 text-green-800 px-2 py-1 text-xs rounded-full">电话核实</span>
+        </div>
+        <div class="text-xs text-gray-500">1小时前</div>
+      </div>
+      
+      <h3 class="font-semibold text-gray-800 mb-2">客户联系方式批量验证</h3>
+      <p class="text-sm text-gray-600 mb-3">通过电话核实20个客户的联系方式有效性</p>
+      
+      <div class="flex items-center space-x-4 text-xs text-gray-500 mb-3">
+        <span><i class="fas fa-phone mr-1"></i>20个电话</span>
+        <span><i class="fas fa-clock mr-1"></i>明日前</span>
+        <span><i class="fas fa-home mr-1"></i>可远程</span>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <span class="text-xs text-gray-600">预计时长: 1-2小时</span>
+        </div>
+        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium">
+          <i class="fas fa-paper-plane mr-1"></i>派单
+        </button>
+      </div>
+    </div>
+
+    <!-- 更多任务 -->
+    <div class="task-card task-normal rounded-xl p-4 shadow-md">
+      <div class="flex items-start justify-between mb-3">
+        <div class="flex items-center space-x-2">
+          <span class="bg-blue-500 text-white px-2 py-1 text-xs rounded-full font-medium">普通</span>
+          <span class="bg-gray-100 text-gray-800 px-2 py-1 text-xs rounded-full">例行检查</span>
+        </div>
+        <div class="text-xs text-gray-500">2小时前</div>
+      </div>
+      
+      <h3 class="font-semibold text-gray-800 mb-2">月度数据质量检查</h3>
+      <p class="text-sm text-gray-600 mb-3">对本月数据进行质量检查和异常数据标记</p>
+      
+      <div class="flex items-center space-x-4 text-xs text-gray-500 mb-3">
+        <span><i class="fas fa-chart-bar mr-1"></i>数据分析</span>
+        <span><i class="fas fa-clock mr-1"></i>本周内</span>
+        <span><i class="fas fa-desktop mr-1"></i>办公室</span>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <span class="text-xs text-gray-600">预计时长: 4-6小时</span>
+        </div>
+        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium">
+          <i class="fas fa-paper-plane mr-1"></i>派单
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI推荐弹窗（模拟） -->
+  <div class="fixed inset-0 bg-black bg-opacity-50 flex items-end z-50" style="display: none;" id="aiModal">
+    <div class="bg-white rounded-t-3xl w-full max-h-96 overflow-hidden">
+      <div class="p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-lg font-semibold text-gray-800">AI智能推荐</h3>
+          <button onclick="document.getElementById('aiModal').style.display='none'" class="text-gray-400">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <p class="text-sm text-gray-600 mb-4">基于位置、负载和历史表现，为您推荐最适合的执行人员：</p>
+        
+        <div class="space-y-3">
+          <div class="member-suggestion bg-green-50 border border-green-200 rounded-xl p-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                  <i class="fas fa-user text-white"></i>
+                </div>
+                <div>
+                  <div class="font-semibold text-gray-800">王师傅</div>
+                  <div class="text-xs text-gray-600">距离0.8km · 当前空闲</div>
+                  <div class="text-xs text-green-600">匹配度: 95%</div>
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="relative w-12 h-12">
+                  <svg class="progress-ring w-12 h-12">
+                    <circle class="progress-ring-circle" stroke="#e5e7eb" stroke-width="4" fill="transparent" r="20" cx="24" cy="24"/>
+                    <circle class="progress-ring-circle" stroke="#10b981" stroke-width="4" fill="transparent" r="20" cx="24" cy="24" 
+                            stroke-dasharray="119" stroke-dashoffset="6"/>
+                  </svg>
+                  <div class="absolute inset-0 flex items-center justify-center text-xs font-bold text-green-600">95%</div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-3 text-xs text-gray-600">
+              <div class="flex items-center space-x-4">
+                <span>✓ 该区域专家</span>
+                <span>✓ VIP客户经验丰富</span>
+                <span>✓ 响应速度快</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="member-suggestion bg-blue-50 border border-blue-200 rounded-xl p-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
+                  <i class="fas fa-user text-white"></i>
+                </div>
+                <div>
+                  <div class="font-semibold text-gray-800">李工</div>
+                  <div class="text-xs text-gray-600">距离1.2km · 1任务进行中</div>
+                  <div class="text-xs text-blue-600">匹配度: 78%</div>
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="relative w-12 h-12">
+                  <svg class="progress-ring w-12 h-12">
+                    <circle class="progress-ring-circle" stroke="#e5e7eb" stroke-width="4" fill="transparent" r="20" cx="24" cy="24"/>
+                    <circle class="progress-ring-circle" stroke="#3b82f6" stroke-width="4" fill="transparent" r="20" cx="24" cy="24" 
+                            stroke-dasharray="119" stroke-dashoffset="26"/>
+                  </svg>
+                  <div class="absolute inset-0 flex items-center justify-center text-xs font-bold text-blue-600">78%</div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-3 text-xs text-gray-600">
+              <div class="flex items-center space-x-4">
+                <span>✓ 技术能力强</span>
+                <span>○ 当前有任务</span>
+                <span>✓ 距离适中</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 flex space-x-3">
+          <button class="flex-1 bg-green-500 text-white py-3 rounded-xl font-semibold">
+            派给王师傅
+          </button>
+          <button class="flex-1 bg-gray-200 text-gray-800 py-3 rounded-xl font-semibold">
+            手动选择
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部管理员 Tab Bar -->
+  <div class="h-20 bg-white border-t border-gray-200 flex justify-around items-center px-6">
+    <div class="flex flex-col items-center space-y-1">
+      <i class="fas fa-map-marked-alt text-xl text-gray-400"></i>
+      <span class="text-xs text-gray-400">驾驶舱</span>
+    </div>
+    <div class="flex flex-col items-center space-y-1">
+      <i class="fas fa-inbox text-2xl text-green-500"></i>
+      <span class="text-xs text-green-500 font-medium">任务池</span>
+    </div>
+    <div class="flex flex-col items-center space-y-1">
+      <i class="fas fa-users text-xl text-gray-400"></i>
+      <span class="text-xs text-gray-400">团队</span>
+    </div>
+    <div class="flex flex-col items-center space-y-1">
+      <i class="fas fa-user text-xl text-gray-400"></i>
+      <span class="text-xs text-gray-400">我的</span>
+    </div>
+  </div>
+
+  <script>
+    // 模拟点击智能派单按钮
+    document.addEventListener('DOMContentLoaded', function() {
+      const buttons = document.querySelectorAll('button:contains("智能派单")');
+      buttons.forEach(button => {
+        if (button.textContent.includes('智能派单')) {
+          button.addEventListener('click', function() {
+            document.getElementById('aiModal').style.display = 'flex';
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html> 
