@@ -1,0 +1,271 @@
+<mxfile host="embed.diagrams.net" modified="2025-01-17T10:45:00.000Z" agent="Gemini 2.5 Pro" etag="K8L9M0N1O2" version="22.1.2" type="device">
+  <diagram id="er-diagram-v2" name="数据守护者AI-ER图-V2">
+    <mxGraphModel dx="3400" dy="4200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4000" pageHeight="6000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ===================================================== -->
+        <!-- 1. 用户管理系统 -->
+        <!-- ===================================================== -->
+
+        <mxCell id="table-organizations" value="&lt;b&gt;organizations (组织架构表)&lt;/b&gt;&lt;br/&gt;存储省市县供电所等组织层级信息" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=45;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;html=1;rounded=1;shadow=0;strokeWidth=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="100" y="100" width="360" height="360" as="geometry" />
+        </mxCell>
+        <mxCell value="&lt;b&gt;id&lt;/b&gt; (主键ID): UUID &lt;i&gt;[PK]&lt;/i&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-organizations">
+          <mxGeometry y="45" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="code (组织编码): VARCHAR(50) &lt;i&gt;[UNIQUE]&lt;/i&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-organizations">
+          <mxGeometry y="71" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="name (组织名称): VARCHAR(200)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-organizations">
+          <mxGeometry y="97" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="type (组织类型): VARCHAR(20)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-organizations">
+          <mxGeometry y="123" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="&lt;b&gt;parent_id&lt;/b&gt; (上级组织ID): UUID &lt;i&gt;[FK]&lt;/i&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-organizations">
+          <mxGeometry y="149" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="level (组织层级): INTEGER" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-organizations">
+          <mxGeometry y="175" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="address (组织地址): TEXT" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-organizations">
+          <mxGeometry y="201" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="contact_phone (联系电话): VARCHAR(20)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-organizations">
+          <mxGeometry y="227" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="contact_email (联系邮箱): VARCHAR(100)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-organizations">
+          <mxGeometry y="253" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="is_active (是否启用): BOOLEAN" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-organizations">
+          <mxGeometry y="279" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="created_at (创建时间): TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-organizations">
+          <mxGeometry y="305" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="updated_at (更新时间): TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-organizations">
+          <mxGeometry y="331" width="360" height="26" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="table-roles" value="&lt;b&gt;roles (角色表)&lt;/b&gt;&lt;br/&gt;存储系统角色和权限配置" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=45;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;html=1;rounded=1;shadow=0;strokeWidth=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="100" y="500" width="360" height="255" as="geometry" />
+        </mxCell>
+        <mxCell value="&lt;b&gt;id&lt;/b&gt; (主键ID): UUID &lt;i&gt;[PK]&lt;/i&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-roles">
+          <mxGeometry y="45" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="code (角色编码): VARCHAR(50) &lt;i&gt;[UNIQUE]&lt;/i&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-roles">
+          <mxGeometry y="71" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="name (角色名称): VARCHAR(100)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-roles">
+          <mxGeometry y="97" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="description (角色描述): TEXT" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-roles">
+          <mxGeometry y="123" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="permissions (权限列表): JSONB" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-roles">
+          <mxGeometry y="149" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="is_active (是否启用): BOOLEAN" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-roles">
+          <mxGeometry y="175" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="created_at (创建时间): TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-roles">
+          <mxGeometry y="201" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="updated_at (更新时间): TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-roles">
+          <mxGeometry y="227" width="360" height="26" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="table-users" value="&lt;b&gt;users (用户表)&lt;/b&gt;&lt;br/&gt;存储系统用户信息，集成i国网" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=45;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;html=1;rounded=1;shadow=0;strokeWidth=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="500" y="100" width="360" height="465" as="geometry" />
+        </mxCell>
+        <mxCell value="&lt;b&gt;id&lt;/b&gt; (主键ID): UUID &lt;i&gt;[PK]&lt;/i&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-users">
+          <mxGeometry y="45" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="employee_id (员工工号): VARCHAR(50) &lt;i&gt;[UNIQUE]&lt;/i&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-users">
+          <mxGeometry y="71" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="name (用户姓名): VARCHAR(100)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-users">
+          <mxGeometry y="97" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="phone (手机号码): VARCHAR(20)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-users">
+          <mxGeometry y="123" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="email (邮箱地址): VARCHAR(100)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-users">
+          <mxGeometry y="149" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="avatar_url (头像URL): TEXT" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-users">
+          <mxGeometry y="175" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="&lt;b&gt;organization_id&lt;/b&gt; (所属组织ID): UUID &lt;i&gt;[FK]&lt;/i&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-users">
+          <mxGeometry y="201" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="roles (用户角色列表): JSONB" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-users">
+          <mxGeometry y="227" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="current_role (当前激活角色): VARCHAR(50)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-users">
+          <mxGeometry y="253" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="status (用户状态): VARCHAR(20)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-users">
+          <mxGeometry y="279" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="last_login_at (最后登录时间): TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-users">
+          <mxGeometry y="305" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="created_at (创建时间): TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-users">
+          <mxGeometry y="331" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="updated_at (更新时间): TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-users">
+          <mxGeometry y="357" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="i_state_user_id (i国网用户ID): VARCHAR(100)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-users">
+          <mxGeometry y="383" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="i_state_sync_at (i国网最后同步时间): TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-users">
+          <mxGeometry y="409" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="i_state_sync_status (i国网同步状态): VARCHAR(20)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-users">
+          <mxGeometry y="435" width="360" height="26" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="table-user_sessions" value="&lt;b&gt;user_sessions (用户会话表)&lt;/b&gt;&lt;br/&gt;存储用户登录会话信息" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=45;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;html=1;rounded=1;shadow=0;strokeWidth=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="500" y="600" width="360" height="307" as="geometry" />
+        </mxCell>
+        <mxCell value="&lt;b&gt;id&lt;/b&gt; (主键ID): UUID &lt;i&gt;[PK]&lt;/i&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-user_sessions">
+          <mxGeometry y="45" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="&lt;b&gt;user_id&lt;/b&gt; (用户ID): UUID &lt;i&gt;[FK]&lt;/i&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-user_sessions">
+          <mxGeometry y="71" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="token_hash (访问令牌哈希值): VARCHAR(255)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-user_sessions">
+          <mxGeometry y="97" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="refresh_token_hash (刷新令牌哈希值): VARCHAR(255)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-user_sessions">
+          <mxGeometry y="123" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="device_info (设备信息): JSONB" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-user_sessions">
+          <mxGeometry y="149" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="ip_address (IP地址): INET" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-user_sessions">
+          <mxGeometry y="175" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="user_agent (用户代理信息): TEXT" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-user_sessions">
+          <mxGeometry y="201" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="expires_at (过期时间): TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-user_sessions">
+          <mxGeometry y="227" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="created_at (创建时间): TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-user_sessions">
+          <mxGeometry y="253" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="last_used_at (最后使用时间): TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-user_sessions">
+          <mxGeometry y="279" width="360" height="26" as="geometry"/>
+        </mxCell>
+        
+        <!-- ... (Rest of the tables will follow the same corrected pattern) ... -->
+
+        <!-- ===================================================== -->
+        <!-- 2. 任务管理系统 -->
+        <!-- ===================================================== -->
+
+        <mxCell id="table-task_categories" value="&lt;b&gt;task_categories (任务类别表)&lt;/b&gt;&lt;br/&gt;存储任务分类配置" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=45;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;html=1;rounded=1;shadow=0;strokeWidth=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="100" width="360" height="307" as="geometry" />
+        </mxCell>
+        <mxCell value="&lt;b&gt;id&lt;/b&gt; (主键ID): UUID &lt;i&gt;[PK]&lt;/i&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-task_categories">
+          <mxGeometry y="45" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="code (类别编码): VARCHAR(50) &lt;i&gt;[UNIQUE]&lt;/i&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-task_categories">
+          <mxGeometry y="71" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="name (类别名称): VARCHAR(100)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-task_categories">
+          <mxGeometry y="97" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="description (类别描述): TEXT" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-task_categories">
+          <mxGeometry y="123" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="icon (图标名称): VARCHAR(50)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-task_categories">
+          <mxGeometry y="149" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="color (显示颜色): VARCHAR(20)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-task_categories">
+          <mxGeometry y="175" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="priority_weight (优先级权重): DECIMAL(3,2)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-task_categories">
+          <mxGeometry y="201" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="is_active (是否启用): BOOLEAN" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-task_categories">
+          <mxGeometry y="227" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="created_at (创建时间): TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-task_categories">
+          <mxGeometry y="253" width="360" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell value="updated_at (更新时间): TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-task_categories">
+          <mxGeometry y="279" width="360" height="26" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="table-tasks" value="&lt;b&gt;tasks (任务表)&lt;/b&gt;&lt;br/&gt;存储数据治理任务信息" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=45;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;html=1;rounded=1;shadow=0;strokeWidth=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="900" y="100" width="360" height="830" as="geometry" />
+        </mxCell>
+        <!-- tasks columns -->
+        <mxCell value="&lt;b&gt;id&lt;/b&gt; (主键ID): UUID &lt;i&gt;[PK]&lt;/i&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="45" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="title (任务标题): VARCHAR(500)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="71" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="description (任务描述): TEXT" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="97" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="&lt;b&gt;category_id&lt;/b&gt; (任务类别ID): UUID &lt;i&gt;[FK]&lt;/i&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="123" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="priority (优先级): VARCHAR(20)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="149" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="status (任务状态): VARCHAR(20)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="175" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="difficulty (难度等级): INTEGER" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="201" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="&lt;b&gt;creator_id&lt;/b&gt; (创建人ID): UUID &lt;i&gt;[FK]&lt;/i&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="227" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="&lt;b&gt;assignee_id&lt;/b&gt; (执行人ID): UUID &lt;i&gt;[FK]&lt;/i&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="253" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="assigned_at (分配时间): TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="279" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="estimated_duration (预估耗时(分钟)): INTEGER" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="305" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="actual_duration (实际耗时(分钟)): INTEGER" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="331" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="deadline (截止时间): TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="357" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="started_at (开始时间): TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="383" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="completed_at (完成时间): TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="409" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="location_address (任务地址): TEXT" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="435" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="location_coordinates (地理坐标): POINT" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="461" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="location_radius (任务有效范围(米)): INTEGER" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="487" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="ai_recommended (是否AI推荐): BOOLEAN" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="513" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="ai_confidence_score (AI推荐置信度): DECIMAL(5,2)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="539" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="ai_recommendation_reason (AI推荐理由): TEXT" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="565" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="data_before (任务执行前数据): JSONB" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="591" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="data_after (任务执行后数据): JSONB" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="617" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="quality_improvement (数据质量提升分数): DECIMAL(5,2)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="643" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="&lt;b&gt;reviewed_by&lt;/b&gt; (审核人ID): UUID &lt;i&gt;[FK]&lt;/i&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="669" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="reviewed_at (审核时间): TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="695" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="review_status (审核状态): VARCHAR(20)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="721" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="review_comment (审核意见): TEXT" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="747" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="created_at (创建时间): TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="773" width="360" height="26" as="geometry"/></mxCell>
+        <mxCell value="updated_at (更新时间): TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="table-tasks"><mxGeometry y="799" width="360" height="26" as="geometry"/></mxCell>
+
+        <!-- ... More tables ... -->
+        
+        <!-- ===================================================== -->
+        <!-- Relationships -->
+        <!-- ===================================================== -->
+        <mxCell id="rel-org-self" edge="1" parent="1" source="table-organizations" target="table-organizations" style="edgeStyle=entityRelationEdgeStyle;endArrow=ERmandOne;startArrow=ERzeroToMany;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" value="parent_id">
+            <mxGeometry relative="1" as="geometry"><mxPoint x="50" y="280" as="sourcePoint"/><mxPoint x="50" y="350" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="rel-users-org" edge="1" parent="1" source="table-users" target="table-organizations" style="edgeStyle=entityRelationEdgeStyle;endArrow=ERmandOne;startArrow=ERzeroToMany;html=1;" value="organization_id">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="rel-sessions-users" edge="1" parent="1" source="table-user_sessions" target="table-users" style="edgeStyle=entityRelationEdgeStyle;endArrow=ERmandOne;startArrow=ERzeroToMany;html=1;" value="user_id">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="rel-tasks-categories" edge="1" parent="1" source="table-tasks" target="table-task_categories" style="edgeStyle=entityRelationEdgeStyle;endArrow=ERmandOne;startArrow=ERzeroToMany;html=1;" value="category_id">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="rel-tasks-creator" edge="1" parent="1" source="table-tasks" target="table-users" style="edgeStyle=entityRelationEdgeStyle;endArrow=ERmandOne;startArrow=ERzeroToMany;html=1;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" value="creator_id">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="rel-tasks-assignee" edge="1" parent="1" source="table-tasks" target="table-users" style="edgeStyle=entityRelationEdgeStyle;endArrow=ERone;startArrow=ERzeroToMany;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" value="assignee_id">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="rel-tasks-reviewer" edge="1" parent="1" source="table-tasks" target="table-users" style="edgeStyle=entityRelationEdgeStyle;endArrow=ERone;startArrow=ERzeroToMany;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" value="reviewed_by">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile> 

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2025-01-17T00:00:00.000Z" agent="5.0" version="24.7.17">
+  <diagram name="数据守护者AI系统架构" id="system-architecture">
+    <mxGraphModel dx="1422" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- 用户层 -->
+        <mxCell id="user-layer-title" value="用户层 (User Layer)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="50" y="30" width="200" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="grid-worker" value="网格员&#xa;• 9000+一线人员&#xa;• 数据采集录入&#xa;• 任务执行&#xa;• 现场核实" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#01579b;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="50" y="70" width="140" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="substation-manager" value="供电所管理员&#xa;• 基层管理人员&#xa;• 任务分配&#xa;• 进度监控&#xa;• 质量把控" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#01579b;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="220" y="70" width="140" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="admin-manager" value="县/市/省级管理员&#xa;• 高层管理人员&#xa;• 战略规划&#xa;• 资源调配&#xa;• 效果评估" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#01579b;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="390" y="70" width="140" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- 前端应用层 -->
+        <mxCell id="frontend-layer-title" value="前端应用层 (Frontend Layer)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="50" y="180" width="200" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="mobile-app" value="移动端PWA应用&#xa;React 18 + TypeScript&#xa;• 响应式设计&#xa;• 离线支持&#xa;• PWA特性" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#4a148c;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="50" y="220" width="480" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="smart-workbench" value="智能工作台&#xa;• 任务管理&#xa;• 数据展示&#xa;• 快捷操作" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#4a148c;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="70" y="300" width="100" height="70" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="eye-scan" value="慧眼扫描&#xa;• OCR识别&#xa;• 画质检测&#xa;• 结果校验" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#4a148c;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="190" y="300" width="100" height="70" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="ai-assistant" value="AI智能助手&#xa;• 对话交互&#xa;• 智能推荐&#xa;• 问题解答" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#4a148c;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="310" y="300" width="100" height="70" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="data-dashboard" value="数据驾驶舱&#xa;• GIS地图&#xa;• 统计分析&#xa;• 实时监控" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#4a148c;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="430" y="300" width="100" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- API网关层 -->
+        <mxCell id="api-gateway-title" value="API网关层 (API Gateway)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="50" y="400" width="200" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="api-gateway" value="API网关&#xa;• 路由转发&#xa;• 身份认证&#xa;• 限流熔断&#xa;• 日志监控" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#e65100;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="50" y="440" width="480" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- AI服务层 -->
+        <mxCell id="ai-services-title" value="AI服务层 (AI Services)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="570" y="180" width="200" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="ocr-engine" value="OCR识别引擎&#xa;• YOLO目标检测&#xa;• CRNN+CTC文字识别&#xa;• 多格式证照支持" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#1b5e20;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="570" y="220" width="120" height="70" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="nlp-engine" value="NLP处理引擎&#xa;• BERT文档理解&#xa;• 实体识别(NER)&#xa;• 语义分析" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#1b5e20;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="710" y="220" width="120" height="70" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="recommendation-engine" value="推荐算法引擎&#xa;• 协同过滤&#xa;• 内容推荐&#xa;• 实时计算" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#1b5e20;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="850" y="220" width="120" height="70" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="intelligent-dispatch" value="智能派单引擎&#xa;• 优先级排序&#xa;• 负载均衡&#xa;• 业务分类" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#1b5e20;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="990" y="220" width="120" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- 业务服务层 -->
+        <mxCell id="business-services-title" value="业务服务层 (Business Services)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="50" y="520" width="200" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="user-service" value="用户管理服务&#xa;• i国网集成&#xa;• 权限控制&#xa;• 角色管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#e65100;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="50" y="560" width="120" height="70" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="task-service" value="任务管理服务&#xa;• 任务调度&#xa;• 流程管理&#xa;• 状态跟踪" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#e65100;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="190" y="560" width="120" height="70" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="quality-service" value="数据质量服务&#xa;• 质量评估&#xa;• 统计分析&#xa;• 趋势预测" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#e65100;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="330" y="560" width="120" height="70" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="notification-service" value="消息通知服务&#xa;• 实时推送&#xa;• 短信通知&#xa;• 邮件提醒" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#e65100;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="470" y="560" width="120" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- 数据存储层 -->
+        <mxCell id="data-layer-title" value="数据存储层 (Data Layer)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="50" y="660" width="200" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="postgresql" value="PostgreSQL&#xa;• 主业务数据&#xa;• 事务处理&#xa;• 关系数据" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#880e4f;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="50" y="700" width="120" height="70" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="redis" value="Redis&#xa;• 缓存数据&#xa;• 会话存储&#xa;• 实时计算" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#880e4f;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="190" y="700" width="120" height="70" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="mongodb" value="MongoDB&#xa;• 文档数据&#xa;• 日志存储&#xa;• 非结构化数据" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#880e4f;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="330" y="700" width="120" height="70" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="minio" value="MinIO/OSS&#xa;• 文件存储&#xa;• 图片视频&#xa;• 静态资源" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#880e4f;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="470" y="700" width="120" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- 外部集成 -->
+        <mxCell id="external-title" value="外部集成 (External Integration)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="650" y="520" width="200" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="igw-system" value="i国网权限系统&#xa;• 身份认证&#xa;• 权限同步&#xa;• 用户信息" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f8e9;strokeColor=#33691e;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="650" y="560" width="120" height="70" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="amap-api" value="高德地图API&#xa;• 地图服务&#xa;• 定位服务&#xa;• 路线规划" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f8e9;strokeColor=#33691e;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="790" y="560" width="120" height="70" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="sms-service" value="短信服务&#xa;• 消息推送&#xa;• 验证码&#xa;• 通知提醒" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f8e9;strokeColor=#33691e;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="930" y="560" width="120" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- 连接线 -->
+        <!-- 用户到前端应用的连接 -->
+        <mxCell id="edge1" edge="1" parent="1" source="grid-worker" target="smart-workbench">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge2" edge="1" parent="1" source="grid-worker" target="eye-scan">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge3" edge="1" parent="1" source="grid-worker" target="ai-assistant">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge4" edge="1" parent="1" source="substation-manager" target="data-dashboard">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge5" edge="1" parent="1" source="admin-manager" target="data-dashboard">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- 前端应用到API网关的连接 -->
+        <mxCell id="edge6" edge="1" parent="1" source="mobile-app" target="api-gateway">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- API网关到业务服务的连接 -->
+        <mxCell id="edge7" edge="1" parent="1" source="api-gateway" target="user-service">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge8" edge="1" parent="1" source="api-gateway" target="task-service">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge9" edge="1" parent="1" source="api-gateway" target="quality-service">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge10" edge="1" parent="1" source="api-gateway" target="notification-service">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- 业务服务到AI服务的连接 -->
+        <mxCell id="edge11" edge="1" parent="1" source="task-service" target="ocr-engine">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge12" edge="1" parent="1" source="task-service" target="nlp-engine">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge13" edge="1" parent="1" source="task-service" target="recommendation-engine">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge14" edge="1" parent="1" source="task-service" target="intelligent-dispatch">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- 业务服务到数据存储的连接 -->
+        <mxCell id="edge15" edge="1" parent="1" source="user-service" target="postgresql">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge16" edge="1" parent="1" source="task-service" target="postgresql">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge17" edge="1" parent="1" source="quality-service" target="postgresql">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge18" edge="1" parent="1" source="notification-service" target="redis">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge19" edge="1" parent="1" source="task-service" target="mongodb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge20" edge="1" parent="1" source="task-service" target="minio">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- 业务服务到外部集成的连接 -->
+        <mxCell id="edge21" edge="1" parent="1" source="user-service" target="igw-system">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge22" edge="1" parent="1" source="quality-service" target="amap-api">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge23" edge="1" parent="1" source="notification-service" target="sms-service">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile> 
